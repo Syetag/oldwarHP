@@ -2,13 +2,13 @@
 
 **A simple UI plugin that displays the health of structures and barricades in a clear and informative way.**
 
-**REQUIRED ❗❗❗**
-**UI - https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495**
-
 **In the plugin config, you can change:**
 - EffectID = 14014;
 - UIKey = 14;
 - RaycastDistance = 5f;
+
+**REQUIRED ❗❗❗**
+**UI - https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495**
 
 ## Features
 
