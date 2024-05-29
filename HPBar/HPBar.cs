@@ -5,18 +5,20 @@ using SDG.Unturned;
 using System;
 using UnityEngine;
 using static Rocket.Unturned.Events.UnturnedPlayerEvents;
+using Logger = Rocket.Core.Logging.Logger;
 
 namespace oldwar
 {
-    public class BuildHPBarPlugin : RocketPlugin
+    public class oldwarHP : RocketPlugin<Config>
     {
-        public static BuildHPBarPlugin Instance;
+        public static oldwarHP Instance;
 
         protected override void Load()
         {
             base.Load();
             Instance = this;
             UnturnedPlayerEvents.OnPlayerUpdateGesture += OnPlayerGesture;
+            Logger.Log("oldwarHP loaded! Created by SyetaG");
         }
 
         protected override void Unload()
@@ -28,24 +30,24 @@ namespace oldwar
 
         private void OnPlayerGesture(UnturnedPlayer player, PlayerGesture gesture)
         {
-            // Проверка: игрок существует?
             if (player == null)
             {
-                Rocket.Core.Logging.Logger.LogWarning("[BuildHPBarPlugin] Игрок не найден!");
+                Logger.LogWarning("[oldwarHP] Player not found!");
                 return;
             }
 
-            if ((EPlayerGesture)gesture != EPlayerGesture.POINT) return;
+            if ((EPlayerGesture)gesture != EPlayerGesture.PUNCH_LEFT &&
+                (EPlayerGesture)gesture != EPlayerGesture.PUNCH_RIGHT &&
+                (EPlayerGesture)gesture != EPlayerGesture.POINT)
+                return;
 
-            if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out var hit, 5f, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE_INTERACT))
+            if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out var hit, Configuration.Instance.RaycastDistance, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE_INTERACT))
             {
-                // Проверка: найден ли объект?
                 if (hit.transform == null)
                 {
                     return;
                 }
 
-                // Поиск баррикады
                 var barricadeDrop = BarricadeManager.FindBarricadeByRootTransform(hit.transform);
                 if (barricadeDrop != null)
                 {
@@ -57,11 +59,10 @@ namespace oldwar
                     }
                     else
                     {
-                        Rocket.Core.Logging.Logger.LogWarning("[BuildHPBarPlugin] Не удалось получить данные баррикады!");
+                        Logger.LogWarning("[oldwarHP] Failed to get barricade data!");
                     }
                 }
 
-                // Поиск структуры, если баррикада не найдена
                 var structureDrop = StructureManager.FindStructureByRootTransform(hit.transform);
                 if (structureDrop != null)
                 {
@@ -72,7 +73,7 @@ namespace oldwar
                     }
                     else
                     {
-                        Rocket.Core.Logging.Logger.LogWarning("[BuildHPBarPlugin] Не удалось получить данные структуры!");
+                        Logger.LogWarning("[oldwarHP] Failed to get structure data!");
                     }
                 }
             }
@@ -80,14 +81,13 @@ namespace oldwar
 
         private void DisplayHP(UnturnedPlayer player, ushort currentHealth, ushort maxHealth, string name)
         {
-            // Проверка: игрок существует?
             if (player == null)
             {
-                Rocket.Core.Logging.Logger.LogWarning("[BuildHPBarPlugin] Игрок не найден!");
+                Logger.LogWarning("[oldwarHP] Player not found!");
                 return;
             }
 
-            EffectManager.sendUIEffect(14014, 14, player.CSteamID, true);
+            EffectManager.sendUIEffect(Configuration.Instance.EffectID, (short)Configuration.Instance.UIKey, player.CSteamID, true);
 
             float percentage = (float)currentHealth / maxHealth;
             int numSpaces = (int)Math.Ceiling(percentage * 57);
@@ -108,9 +108,9 @@ namespace oldwar
                 color = "red";
             }
 
-            EffectManager.sendUIEffectText(14, player.CSteamID, true, "Scroll", scrollText);
-            EffectManager.sendUIEffectText(14, player.CSteamID, true, "HP", $"<color={color}>{currentHealth} / {maxHealth}</color>");
-            EffectManager.sendUIEffectText(14, player.CSteamID, true, "NAME", $"{name}");
+            EffectManager.sendUIEffectText((short)Configuration.Instance.UIKey, player.CSteamID, true, "Scroll", scrollText);
+            EffectManager.sendUIEffectText((short)Configuration.Instance.UIKey, player.CSteamID, true, "HP", $"<color={color}>{currentHealth} / {maxHealth}</color>");
+            EffectManager.sendUIEffectText((short)Configuration.Instance.UIKey, player.CSteamID, true, "NAME", $"{name}");
         }
     }
 }
