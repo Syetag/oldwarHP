@@ -5,6 +5,11 @@
 **REQUIRED ❗❗❗**
 **UI - https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495**
 
+**In the plugin config, you can change:**
+- EffectID = 14014;
+- UIKey = 14;
+- RaycastDistance = 5f;
+
 ## Features
 
 **See HP with a gesture "Point":**
