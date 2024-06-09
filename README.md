@@ -1,4 +1,4 @@
-## oldwarHP - Check the HP of buildings!
+## oldwarHP - Check the HP of Buildings!
 
 **A simple UI plugin that displays the health of structures and barricades in a clear and informative way.**
 
@@ -8,27 +8,33 @@
 - RaycastDistance = 5f;
 
 **REQUIRED ❗❗❗**
-**UI - https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495**
+**UI - [Steam Workshop Link](https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495)**
 
 ## Features
 
-**See HP with a gesture "Point":**
+**See HP with a Gesture "Point":**
 
--  Point at any structure or barricade with the "Point" gesture to instantly reveal its remaining health.
+- Point at any structure or barricade with the "Point" gesture to instantly reveal its remaining health.
 
-![GIFMaker_me](https://github.com/Syetag/HPBarStructure/assets/109528894/11e69d8d-2d19-4b4e-8fdb-e54291d16ac4)
+![GIF showing health display with pointing gesture](https://github.com/Syetag/oldwarHP/assets/109528894/a514461e-27e2-4465-8e64-5dfd1ae17ed3)
 
-**See HP with a punch:**
+**See HP with a Punch:**
 
-- The HP bar will also appear whenever you damage with punch a structure, giving you instant feedback on your attacks.
+- The HP bar will also appear whenever you damage a structure with a punch, giving you instant feedback on your attacks.
 
-![GIFMaker_me (2)](https://github.com/Syetag/HPBarStructure/assets/109528894/e606f1e4-e0cd-45bb-a959-9c7cfa91019a)
+![GIF showing health display with punch](https://github.com/Syetag/oldwarHP/assets/109528894/63b0da47-1cec-4aee-9eb2-28e8c9cf7115)
+
+**Works in Vehicles:**
+
+- The HP bar will also appear whenever you damage a vehicle by punching or pointing at it, giving you instant feedback on your attacks.
+
+![GIF showing health display on vehicle](https://github.com/Syetag/oldwarHP/assets/109528894/e4ec4c49-5187-4686-860d-e91e09f7c125)
 
 **Universal Compatibility:**
 
 - Works seamlessly with all structures and barricades, including those added by mods.
 
-![GIFMaker_me (3)](https://github.com/Syetag/HPBarStructure/assets/109528894/dbf72380-9e31-44c1-9117-1e977c41bd8a)
+![GIF showing health display on various structures](https://github.com/Syetag/oldwarHP/assets/109528894/2c515363-966d-4ea2-8b03-53e9903b6076)
 
 ## Dynamic HP Visualization
 
@@ -36,12 +42,12 @@
 
 **High HP (100-50%):**
 
-![100](https://github.com/Syetag/HPBarStructure/assets/109528894/128802f8-2d69-40d3-9a65-cfd2fc175d5e)
+![High HP display](https://github.com/Syetag/oldwarHP/assets/109528894/aa6cbe68-6548-41af-b883-5e8c0cfa76ea)
 
 **Medium HP (50-25%):**
 
-![49](https://github.com/Syetag/HPBarStructure/assets/109528894/e59a3ddb-2242-44eb-8a19-5a8a0c27530e)
+![Medium HP display](https://github.com/Syetag/oldwarHP/assets/109528894/5dc1c2ef-0d43-40c5-95c8-f9490dc8b7ba)
 
 **Low HP (25-0%):**
 
-![0](https://github.com/Syetag/HPBarStructure/assets/109528894/3b42c8e0-45b5-402e-99d3-192169bfaae4) 
+![Low HP display](https://github.com/Syetag/oldwarHP/assets/109528894/acf1dbba-bfe2-4415-9787-8be724135994)
