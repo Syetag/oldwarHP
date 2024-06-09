@@ -20,13 +20,13 @@
 
 **See HP with a Punch:**
 
-- The HP bar will also appear whenever you damage a structure with a punch, giving you instant feedback on your attacks.
+- The HP bar will also appear whenever you damage a structure with a punch.
 
 ![GIF showing health display with punch](https://github.com/Syetag/oldwarHP/assets/109528894/63b0da47-1cec-4aee-9eb2-28e8c9cf7115)
 
 **Works in Vehicles:**
 
-- The HP bar will also appear whenever you damage a vehicle by punching or pointing at it, giving you instant feedback on your attacks.
+- The HP bar will also appear whenever you damage a vehicle by punching or pointing at it.
 
 ![GIF showing health display on vehicle](https://github.com/Syetag/oldwarHP/assets/109528894/e4ec4c49-5187-4686-860d-e91e09f7c125)
 
