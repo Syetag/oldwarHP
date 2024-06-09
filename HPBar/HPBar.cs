@@ -195,12 +195,12 @@ namespace oldwar
                 string color = percentage > 0.66f ? "#82d057" : percentage > 0.33f ? "#f4b43f" : "#fa3216"; // Green, Yellow, Red
 
                 string currentHealthFormatted = currentHealth >= 1000 ?
-                    (currentHealth / 1000f).ToString("0.##") + "K" :
-                    currentHealth.ToString();
+                    (currentHealth / 1000f).ToString("0.##", CultureInfo.InvariantCulture) + "K" :
+                    currentHealth.ToString(CultureInfo.InvariantCulture);
 
                 string maxHealthFormatted = maxHealth >= 1000 ?
-                    (maxHealth / 1000f).ToString("0.##") + "K" :
-                    maxHealth.ToString();
+                    (maxHealth / 1000f).ToString("0.##", CultureInfo.InvariantCulture) + "K" :
+                    maxHealth.ToString(CultureInfo.InvariantCulture);
 
                 EffectManager.sendUIEffectText((short)Configuration.Instance.UIKey, player.CSteamID, true, "Scroll", scrollText);
                 EffectManager.sendUIEffectText((short)Configuration.Instance.UIKey, player.CSteamID, true, "HP", $"<color={color}>{currentHealthFormatted} / {maxHealthFormatted}</color>");
