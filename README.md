@@ -40,14 +40,14 @@
 
 **Structures have three distinct HP color states for quick assessment:**
 
-**High HP (100-50%):**
+**High HP (100-66%):**
 
 ![High HP display](https://github.com/Syetag/oldwarHP/assets/109528894/aa6cbe68-6548-41af-b883-5e8c0cfa76ea)
 
-**Medium HP (50-25%):**
+**Medium HP (66-33%):**
 
 ![Medium HP display](https://github.com/Syetag/oldwarHP/assets/109528894/5dc1c2ef-0d43-40c5-95c8-f9490dc8b7ba)
 
-**Low HP (25-0%):**
+**Low HP (33-0%):**
 
 ![Low HP display](https://github.com/Syetag/oldwarHP/assets/109528894/acf1dbba-bfe2-4415-9787-8be724135994)
