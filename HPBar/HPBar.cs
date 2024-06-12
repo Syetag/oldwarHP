@@ -6,6 +6,7 @@ using SDG.Unturned;
 using Steamworks;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Threading;
 using UnityEngine;
@@ -63,9 +64,13 @@ namespace oldwar
             var playerData = GetData(player);
             try
             {
-                playerData.InteractSemaphore.Wait();
+                if (!playerData.InteractSemaphore.Wait(8000))
+                {
+                    Rocket.Core.Logging.Logger.LogError($"[oldwarHP] Timeout while waiting for semaphore for player {player.DisplayName} (ID - {player.CSteamID}). Possible deadlock in OnPlayerUpdateGesture.");
+                    return;
+                }
 
-                if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out var hit, Configuration.Instance.RaycastDistance, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE_INTERACT | RayMasks.VEHICLE))
+                if (Physics.Raycast(player.Player.look.aim.position, player.Player.look.aim.forward, out var hit, Configuration.Instance.RaycastDistance, RayMasks.BARRICADE_INTERACT | RayMasks.STRUCTURE_INTERACT | RayMasks.VEHICLE | RayMasks.RESOURCE))
                 {
                     TryDisplayHP(player, hit.transform);
                 }
@@ -100,7 +105,8 @@ namespace oldwar
             return TryDisplayBarricadeHP(player, hitTransform, out name, out currentHealth, out maxHealth) ||
                    TryDisplayStructureHP(player, hitTransform, out name, out currentHealth, out maxHealth) ||
                    TryDisplayVehicleHP(player, hitTransform, out name, out currentHealth, out maxHealth) ||
-                   TryDisplayDoorHP(player, hitTransform, out name, out currentHealth, out maxHealth);
+                   TryDisplayDoorHP(player, hitTransform, out name, out currentHealth, out maxHealth) ||
+                   TryDisplayResourceHP(player, hitTransform, out name, out currentHealth, out maxHealth);
         }
 
         private bool TryDisplayBarricadeHP(UnturnedPlayer player, Transform hitTransform, out string name, out ushort currentHealth, out ushort maxHealth)
@@ -227,6 +233,37 @@ namespace oldwar
             return false;
         }
 
+        private bool TryDisplayResourceHP(UnturnedPlayer player, Transform hitTransform, out string name, out ushort currentHealth, out ushort maxHealth)
+        {
+            name = string.Empty;
+            currentHealth = 0;
+            maxHealth = 0;
+
+            try
+            {
+                if (Regions.tryGetCoordinate(hitTransform.position, out var x, out var y))
+                {
+                    List<ResourceSpawnpoint> resources = LevelGround.trees[x, y];
+                    for (int i = 0; i < resources.Count; i++)
+                    {
+                        if (resources[i].model == hitTransform || resources[i].stump == hitTransform)
+                        {
+                            name = resources[i].asset.resourceName;
+                            currentHealth = (ushort)resources[i].health;
+                            maxHealth = resources[i].asset.health;
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Rocket.Core.Logging.Logger.LogException(ex, "TryDisplayResourceHP");
+            }
+
+            return false;
+        }
+
         private void DisplayHP(UnturnedPlayer player, ushort currentHealth, ushort maxHealth, string name)
         {
             if (player == null)
@@ -259,7 +296,7 @@ namespace oldwar
             }
             catch (Exception ex)
             {
-                Rocket.Core.Logging.Logger.LogError($"Error in DisplayHP: {ex.Message}");
+                Rocket.Core.Logging.Logger.LogException(ex, "DisplayHP");
             }
         }
 
