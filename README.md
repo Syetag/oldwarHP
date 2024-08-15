@@ -4,7 +4,7 @@
 
 **In the plugin config, you can change:**
 - EffectID = 14014;
-- UIKey = 14;
+- EffectKey = 14;
 - RaycastDistance = 5f; (Distance to the object)
 - ShowColoredNames = true;
 - ApplyHealthScaling = true; (Show HP in short format (1.2K)
