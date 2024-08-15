@@ -1,11 +1,19 @@
-## oldwarHP - Check the HP of Buildings!
+![HP Bar Banner](https://github.com/user-attachments/assets/6aeb8621-5c9f-46d5-bcc3-e9fda15a034b)
 
 **A simple UI plugin that displays the health of structures and barricades in a clear and informative way.**
 
 **In the plugin config, you can change:**
 - EffectID = 14014;
 - UIKey = 14;
-- RaycastDistance = 5f;
+- RaycastDistance = 5f; (Distance to the object)
+- 
+- ShowColoredNames = true;
+- ApplyHealthScaling = true; (Show HP in short format (1.2K)
+- 
+- ShowBarricadeHP = true;
+- ShowStructureHP = true;
+- ShowVehicleHP = true;
+- ShowResourceHP = true;
 
 **REQUIRED ❗❗❗**
 **UI - [Steam Workshop Link](https://steamcommunity.com/sharedfiles/filedetails/?id=3239310495)**
