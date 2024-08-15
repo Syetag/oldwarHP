@@ -6,10 +6,10 @@
 - EffectID = 14014;
 - UIKey = 14;
 - RaycastDistance = 5f; (Distance to the object)
-- 
+  
 - ShowColoredNames = true;
 - ApplyHealthScaling = true; (Show HP in short format (1.2K)
-- 
+
 - ShowBarricadeHP = true;
 - ShowStructureHP = true;
 - ShowVehicleHP = true;
