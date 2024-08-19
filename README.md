@@ -1,4 +1,4 @@
-![HP Bar Banner](https://github.com/user-attachments/assets/6aeb8621-5c9f-46d5-bcc3-e9fda15a034b)
+![HP Bar Banner](https://github.com/user-attachments/assets/d52048ed-1c8e-484c-a1c8-84027323f0f2)
 
 **A simple UI plugin that displays the health of structures and barricades in a clear and informative way.**
 
